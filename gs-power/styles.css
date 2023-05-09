@@ -1,0 +1,30 @@
+
+body{
+    background-image: url("bluebackground.avif");
+}
+#pic1{
+    margin:10%, 30%, 10%;
+    image-resolution: 100px;
+}
+#indexPic{
+    padding-left: 40%;
+}
+#pic3{
+    margin-top: 5%;
+    margin-bottom:20%
+}
+#pic4{
+    margin:10%, 30% 10%;
+}
+#pic5{
+    margin:10%;
+}
+p, h1, h2, nav{
+    text-align: center;
+}
+table{
+    margin-left:42%;
+}
+nav{
+    color:blue;
+}

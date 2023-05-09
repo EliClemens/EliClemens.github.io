@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+    <!--Google Fonts-->
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav1">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="nav1">
+                    <a href="services.html">Services</a>
+                </div>
+                <div class="nav1">
+                    <a href="contact.html">Contact us</a>
+                </div>
+                <div class="nav1">
+                    <a href="community.html">Community Outreach</a>
+                </div>
+            </nav>
+            <div id="p-contact">
+                <p>
+                    Thank you for your interest in Ink'd! We're excited to hear from you and would love to answer any
+                    questions you might have about our services. Whether you're looking for screenprinting, DTP, or
+                    embroidery, we've got you covered.
+
+                    To help us understand your needs better, please fill out the form below with as much detail as
+                    possible. One of our friendly team members will get back to you as soon as possible.
+                </p>
+            </div>
+            <p>
+                Thank you for your interest in Ink'd! We're excited to hear from you and would love to answer any
+                questions you might have about our services. Whether you're looking for screenprinting, DTP, or
+                embroidery, we've got you covered.
+
+                To help us understand your needs better, please fill out the form below with as much detail as possible.
+                One of our friendly team members will get back to you as soon as possible.
+            </p>
+
+            <form action="submit-form.php" method="POST" class="contact-form">
+                <div class="form-items">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required> <br> <br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required> <br> <br>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(###)###-####" required> <br> <br>
+                </div>
+
+                <div class="form-items">
+                    <fieldset>
+                        <legend>What services are you interested in?</legend>
+                        <input type="checkbox" id="screenprinting" name="services[]" value="Screenprinting">
+                        <label for="screenprinting">Screenprinting</label> <br>
+                        <input type="checkbox" id="dtp" name="services[]" value="DTP">
+                        <label for="dtff">DTF</label>
+                        <input type="text" id="dtff" name="dtff">
+                        <label for="dtp">DTP</label> <br>
+                        <input type="checkbox" id="embroidery" name="services[]" value="Embroidery">
+                        <label for="embroidery">Embroidery</label> <br>
+                    </fieldset>
+                </div>
+
+                <div class="form-items">
+                    <input type="date" id="deadline" name="deadline">
+                    <label for="deadline">Project deadline:</label> <br>
+
+                    <input type="number" id="quantity" name="quantity">
+                    <label for="quantity">Quantity:</label> <br>
+
+                    <input type="text" id="budget" name="budget">
+                    <label for="budget">Budget:</label> <br>
+
+                    <textarea id="additional-info" name="additional-info"></textarea>
+                    <label for="additional-info">Additional information:</label> <br>
+
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <img src="images/orangeblack.png" alt="orange to black background" class="bottom-image">
+
+    <nav class="nav">
+        <div class="nav1">
+            <a href="index.html">Home</a>
+        </div>
+        <div class="nav1">
+            <a href="services.html">Services</a>
+        </div>
+        <div class="nav1">
+            <a href="contact.html">Contact us</a>
+        </div>
+        <div class="nav1">
+            <a href="community.html">Community Outreach</a>
+        </div>
+    </nav>
+
+
+</body>
+
+</html>

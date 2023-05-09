@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!--Bootstrap-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+     crossorigin="anonymous"></script>
+ <!--Bootstrap-->
+    <title>C#</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="html_css.html">HTML/CSS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">C#</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Website Examples
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="inkd_screenprinting/index.html">Ink'd Impressions</a> </li>
+                                <li><a class="dropdown-item" href="exam2/index.html">Howards Lakeside</a></li>
+                                <li><a class="dropdown-item" href="business_website/index.html">G's Powerwashing</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h1>
+            C#
+        </h1>
+        <p>
+            I love learning C#. C# is a computer language for programming. So far I have focused on simple console apps. I have learned the problem solving process, and planning stage. I have learned how to write and utilize pseudocode with flowcharts. I am becoming experienced in C# programming language with an intermediate understanding of object-oriented programming concepts. I am also becoming proficient in creating class libraries and utilizing loops  like while foreach, for, while and conditional statements such as if-else statements, in addition to arrays, and lists. I am knowledgeable in creating custom data types, functions, and methods. Possess strong analytical and problem-solving skills, and ability to work collaboratively in a team environment. I have a beginners understanding of Source Control and TFS. 
+        </p>
+        <h2>
+            Skills
+        </h2>
+        <p>
+            Skills:
+
+    C# programming language
+    Object-oriented programming concepts
+    Class libraries
+    Constructors
+    Control structures (loops, conditional statements)
+    Arrays and lists
+    Custom data types
+    Functions and methods
+    Analytical and problem-solving skills
+    Team collaboration
+        </p>
+    </div><!--end of <div> container-->
+</body>
+</html>
+public void ReturnBookToLibrary()
+{
+    Console.Clear();
+    bool runProgram = true;
+    while(true)
+    {
+        ListBooks();
+        Console.WriteLine("Please enter the isbn of the book you would like to return-----");
+        string ISBN1 = Console.ReadLine(); //new variable for the user's isbn
+        Book bookToReturn = null; //create a bookToBorrow for the book object
+        for (int i = 0; i < Books.Count; i++) //for loop to cycle for matching isbn
+        {
+            if (Books[i].ISBN == ISBN1)
+            {
+                bookToReturn = Books[i]; //connects bookToBorrow to book[i]. book[i] is the 
+                bookToReturn = Books[i]; ///links the book object with matching isbn to the new varible 
+                bookToReturn.isBorrowed = true; //changes bool value to true(borrowed:true)
+                Console.WriteLine("You just returned: " + bookToReturn.Title); //display book to user and show that is is borrowed
+                Console.WriteLine("Would you like to return another book? Y/N");
+                string rewind = Console.ReadLine();
+                if (rewind == "Y")
+                {
+                    runProgram= false;
+                }
+                else if (rewind == "n")
+                {
+                    break;
+                }
+                
+            }
+        }
+        if (bookToReturn == null) // if the isbn user input equals nothing in the list
+        {
+            Console.WriteLine("Book with title {0} is not found in the library. \n Please make sure your ISBN is correct.", ISBN1);
+            runProgram= false;
+            break;
+        }
+        else
+        {
+            bookToReturn.isBorrowed = false; //if the bool value is true than the book is already borrowed
+            Console.WriteLine("Book with title {0} is borrowed", ISBN1);
+        }
+    }//end of while loop
+   
+}

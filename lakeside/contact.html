@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Author:Eli Clemens-->
+<!--Date:3-26-2023-->
+<!--Filename:contact.html-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!--google fonts link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+    <title>Contact Us</title>
+</head>
+
+<body>
+    <!--Navigation on top and bottom-->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    <img src="images/bass.jpeg" alt="bass fish" class="fish-pic">
+    <p>We strive to keep the quality of our products high. <br>If you have any questions for us please leave your name
+        and email adress and we will contact you within two business days.</p>
+    <!--Form to gather information.-->
+    <!--Some items are required so you don't waste your time with incomplete information-->
+    <form action="thank_you.html" method="get" id="form">
+        Please enter your information 
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" placeholder="First Name" required><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" placeholder="Last Name" required><br><br>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" placeholder="Phone(optional)"><br><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" placeholder="Email" required><br>
+        <p>Please type any questions or concerns</p>
+        <textarea name="questions" rows="4" cols="50">
+Enter text here</textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+</body>
+
+</html>
