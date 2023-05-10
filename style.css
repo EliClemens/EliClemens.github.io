@@ -1,4 +1,18 @@
 /*Author: Eli Clemens */
-.img-fluid{
-    height:300px;
+body {
+    background-color: rgb(242, 214, 177);
+    text-align: center;
+}
+
+.container-fluid {
+    background-color: rgb(250, 184, 98);
+}
+
+.img-fluid {
+    height: 300px;
+}
+.container{
+    width:90%;
+    margin: 10px;
+    
 }
