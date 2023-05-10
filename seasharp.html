@@ -70,51 +70,13 @@
     Analytical and problem-solving skills
     Team collaboration
         </p>
+        <h2>
+            C# code for programs I have written.
+        </h2>
+        <h3>
+            <a href="library.html">Library Log</a>
+            <a href="pizza.html">Pizza Ordering App</a>
+        </h3>
     </div><!--end of <div> container-->
 </body>
 </html>
-public void ReturnBookToLibrary()
-{
-    Console.Clear();
-    bool runProgram = true;
-    while(true)
-    {
-        ListBooks();
-        Console.WriteLine("Please enter the isbn of the book you would like to return-----");
-        string ISBN1 = Console.ReadLine(); //new variable for the user's isbn
-        Book bookToReturn = null; //create a bookToBorrow for the book object
-        for (int i = 0; i < Books.Count; i++) //for loop to cycle for matching isbn
-        {
-            if (Books[i].ISBN == ISBN1)
-            {
-                bookToReturn = Books[i]; //connects bookToBorrow to book[i]. book[i] is the 
-                bookToReturn = Books[i]; ///links the book object with matching isbn to the new varible 
-                bookToReturn.isBorrowed = true; //changes bool value to true(borrowed:true)
-                Console.WriteLine("You just returned: " + bookToReturn.Title); //display book to user and show that is is borrowed
-                Console.WriteLine("Would you like to return another book? Y/N");
-                string rewind = Console.ReadLine();
-                if (rewind == "Y")
-                {
-                    runProgram= false;
-                }
-                else if (rewind == "n")
-                {
-                    break;
-                }
-                
-            }
-        }
-        if (bookToReturn == null) // if the isbn user input equals nothing in the list
-        {
-            Console.WriteLine("Book with title {0} is not found in the library. \n Please make sure your ISBN is correct.", ISBN1);
-            runProgram= false;
-            break;
-        }
-        else
-        {
-            bookToReturn.isBorrowed = false; //if the bool value is true than the book is already borrowed
-            Console.WriteLine("Book with title {0} is borrowed", ISBN1);
-        }
-    }//end of while loop
-   
-}
