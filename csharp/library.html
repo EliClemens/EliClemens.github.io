@@ -4,242 +4,242 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>C# Library Project</title>
 </head>
 <body>
-    <h1>Library Project</h1>
-    <h2>This is a project that I worked on with 3 other members. The goal of this program is to keep a list of book objects containing title, author, isbn, and tells if the book is checked out or not. The user should have an option to add, remove, checkout or return a book. The program runs smoothly and has some error handling. It was built in Visual Studio 2022.</h2>
-    <p>
-        (Program Class)
-        namespace LibraryProject
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Library library = new Library();
-            while (true)
-            {
-                DisplayMenu();
-                int userChoice = GetUserInput();
-                Console.WriteLine(userChoice);
-                if (userChoice == 1)
-                {
-                    library.AddBookToLibrary();
-                }
-                if (userChoice == 2)
-                {
-                    library.ListBooks();
-                }
-                if (userChoice == 3)
-                {
-                    library.BorrowBook();
-                }
-                if (userChoice == 4)
-                {
-                    library.ReturnBookToLibrary();
-                }
-                if (userChoice == 5)
-                {
-                    break;
-                }
-            }
-        }
-        static void DisplayMenu()
-        {
-            Console.WriteLine("Welcome to our library. \n" +
-                              "Would you like to \n " +
-                              "1- Add a book \n " +
-                              "2- List the books \n " +
-                              "3- Borrow a book \n " +
-                              "4- Return a book \n " +
-                              "5- Exit the application");
-        }
-        static int GetUserInput()
-        {
-            int userChoice;
-            while (true)
-            {
-                string firstChoice = Console.ReadLine();
-                if (int.TryParse(firstChoice, out userChoice) && userChoice > 0 && userChoice < 6)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Please enter a valid choice.");
-                }
-            }
-            return userChoice;
-        }
-
-    }
-}
-    </p>
-    <p>(Library and Book Class)
-        namespace LibraryProject
-{
-    public class Library
-    {
-        //Create a list named books to store books
-        public List<Book> Books = new List<Book>();
-        public void AddBook(Book book)
-        {
-            Books.Add(book);
-        }
-
-        public void ListBooks()
-        {
-            int i = 0;
-            foreach (Book book in Books)
-            {
-                Console.WriteLine("{0}. {1}, {2}, {3}", i, book.Title, book.Author, book.ISBN);
-                i++;
-            }
-        }
-        public void AddBookToLibrary()
-        {
-            Console.Clear();
-            Book book = new Book("", "", "", false);//new book in book class with parameters(blank(title), blank(Author), blank(isbn), false(bool {borrowed=false})
-            Console.WriteLine("Please enter the title of the book");
-            book.Title = Console.ReadLine(); //get title
-            Console.WriteLine("Please enter the author of the book");
-            book.Author = Console.ReadLine(); //get author
-            Console.WriteLine("Please enter the ISBN of the book");
-            book.ISBN = Console.ReadLine(); //get isbn
-            book.isBorrowed = false; //sets isborrowed to false
-            this.AddBook(book); //adds book to library
-        }
-        public void BorrowBook()
-        {
-            Console.Clear();
-            while (true)
-            {
-                ListBooks();
-                Console.WriteLine("Please enter the isbn of the book you would like to borrow");
-                string ISBN1 = Console.ReadLine(); //new variable for the user's isbn
-                Book bookToBorrow = null; //create a bookToBorrow for the book object
-                for (int i = 0; i < Books.Count; i++) //for loop to cycle for matching isbn
-                {
-                    if (Books[i].ISBN == ISBN1)
-                    {
-                        bookToBorrow = Books[i]; ///links the book object with matching isbn to the new varible 
-                        bookToBorrow.isBorrowed = false; //changes bool value to true(borrowed:true)
-                        if (bookToBorrow.isBorrowed == true)
-                        {
-                            Console.WriteLine("{0} is already checked out.", bookToBorrow.Title);
-                            return;
-                        }
-                        if (bookToBorrow.isBorrowed == false)
-                        {
-                            bookToBorrow.isBorrowed = true;
-                            Console.WriteLine("You just borrowed: " + bookToBorrow.Title);
-                            return;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Book with title {0} is not found in the library");
-                        }
-                    }
-                }
-
-            }
-
-        }
-        public void ReturnBookToLibrary()
-        {
-            Console.Clear();
-            while (true)
-            {
-                ListBooks();
-                Console.WriteLine("Please enter the ISBN of the book you would like to return:");
-                string ISBN1 = Console.ReadLine();
-                Book bookToReturn = null;
-                for (int i = 0; i < Books.Count; i++)
-                {
-                    if (Books[i].ISBN == ISBN1 && Books[i].isBorrowed)
-                    {
-                        bookToReturn = Books[i];
-                        bookToReturn.isBorrowed = false;
-                        Console.WriteLine("You just returned: {0}. Would you like to return another book? Y/N", bookToReturn.Title);
-                        string ReturnAgain = Console.ReadLine().ToUpper();
-                        if (ReturnAgain == "Y")
-                        {
-                            continue;
-                        }
-                        else if (ReturnAgain == "N")
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong answer. Type Y or N");
-                            continue;
-                        }
-                    }
-                }
-                if (bookToReturn == null)
-                {
-                    Console.WriteLine("Book with ISBN {0} is not found in the library or it was not borrowed.", ISBN1);
-                }
-                Console.WriteLine("Would you like to return another book? Y/N");
-                string rewind = Console.ReadLine().ToUpper();
-                if (rewind.ToUpper() == "Y")
-                {
-                    break;
-                }
-                if (rewind.ToUpper() == "N")
-                {
-                    Console.Clear();
-                }
-                else
-                {
-                    Console.Clear();
-                }
-            }
-        }
-        public void SaveToFile()
-        {
-            //Get path to the current working directory where the program is stored on the local PC (Current directory)
-            string directory = Directory.GetCurrentDirectory();
-
-            //Sets filePath to the text file within the current directory
-            string filePath = directory + @"\bookList.txt";
-
-            //If block checks if file exists at specified path and uses StreamWriter to create it if needed
-            if (!(File.Exists(filePath)))
-            {
-                StreamWriter fileBuddy = new StreamWriter(filePath);
-                fileBuddy.Close();
-            }
-
-            //Create StreamWriter to write Books list into the file
-            StreamWriter writer = new StreamWriter(filePath);
-
-            //Iterate through the Books list and add each item to the file
-            foreach (Book Book in Books)
-            {
-                Console.WriteLine(Books);  //Output to console
-                writer.WriteLine(Books);  //Save line to file
-            }
-            writer.Close();  //Terminate StringWriter to save changes
-        }
-    }
-    public class Book
-    {
-        public string Title;
-        public string Author;
-        public string ISBN;
-        public bool isBorrowed;
-        public Book(string title, string author, string isbn, bool isBorrowed)
-        {
-            this.Title = title;
-            this.Author = author;
-            this.ISBN = isbn;
-            this.isBorrowed = isBorrowed;
-        }
-    }
-}
+    <h1>Library Project</h1><br>
+    <h2>This is a project that I worked on with 3 other members. The goal of this program is to keep a list of book objects containing title, author, isbn, and tells if the book is checked out or not. The user should have an option to add, remove, checkout or return a book. The program runs smoothly and has some error handling. It was built in Visual Studio 2022.</h2><br>
+    <p><br>
+        (Program Class)<br>
+        namespace LibraryProject<br>
+{<br>
+    internal class Program<br>
+    {<br>
+        static void Main(string[] args)<br>
+        {<br>
+            Library library = new Library();<br>
+            while (true)<br>
+            {<br>
+                DisplayMenu();<br>
+                int userChoice = GetUserInput();<br>
+                Console.WriteLine(userChoice);<br>
+                if (userChoice == 1)<br>
+                {<br>
+                    library.AddBookToLibrary();<br>
+                }<br>
+                if (userChoice == 2)<br>
+                {<br>
+                    library.ListBooks();<br>
+                }<br>
+                if (userChoice == 3)<br>
+                {<br>
+                    library.BorrowBook();<br>
+                }<br>
+                if (userChoice == 4)<br>
+                {<br>
+                    library.ReturnBookToLibrary();<br>
+                }<br>
+                if (userChoice == 5)<br>
+                {<br>
+                    break;<br>
+                }<br>
+            }<br>
+        }<br>
+        static void DisplayMenu()<br>
+        {<br>
+            Console.WriteLine("Welcome to our library. \n" +<br>
+                              "Would you like to \n " +<br>
+                              "1- Add a book \n " +<br>
+                              "2- List the books \n " +<br>
+                              "3- Borrow a book \n " +<br>
+                              "4- Return a book \n " +<br>
+                              "5- Exit the application");<br>
+        }<br>
+        static int GetUserInput()<br>
+        {<br>
+            int userChoice;<br>
+            while (true)<br>
+            {<br>
+                string firstChoice = Console.ReadLine();<br>
+                if (int.TryParse(firstChoice, out userChoice) && userChoice > 0 && userChoice < 6)<br>
+                {<br>
+                    break;<br>
+                }<br>
+                else<br>
+                {<br>
+                    Console.WriteLine("Please enter a valid choice.");<br>
+                }<br>
+            }<br>
+            return userChoice;<br>
+        }<br>
+<br>
+    }<br>
+}<br>
+    </p><br>
+    <p>(Library and Book Class)<br>
+        namespace LibraryProject<br>
+{<br>
+    public class Library<br>
+    {<br>
+        //Create a list named books to store books<br>
+        public List<Book> Books = new List<Book>();<br>
+        public void AddBook(Book book)<br>
+        {<br>
+            Books.Add(book);<br>
+        }<br>
+<br>
+        public void ListBooks()<br>
+        {<br>
+            int i = 0;<br>
+            foreach (Book book in Books)<br>
+            {<br>
+                Console.WriteLine("{0}. {1}, {2}, {3}", i, book.Title, book.Author, book.ISBN);<br>
+                i++;<br>
+            }<br>
+        }<br>
+        public void AddBookToLibrary()<br>
+        {<br>
+            Console.Clear();<br>
+            Book book = new Book("", "", "", false);//new book in book class with parameters(blank(title), blank(Author), blank(isbn), false(bool {borrowed=false})<br>
+            Console.WriteLine("Please enter the title of the book");<br>
+            book.Title = Console.ReadLine(); //get title<br>
+            Console.WriteLine("Please enter the author of the book");<br>
+            book.Author = Console.ReadLine(); //get author<br>
+            Console.WriteLine("Please enter the ISBN of the book");<br>
+            book.ISBN = Console.ReadLine(); //get isbn<br>
+            book.isBorrowed = false; //sets isborrowed to false<br>
+            this.AddBook(book); //adds book to library<br>
+        }<br>
+        public void BorrowBook()<br>
+        {<br>
+            Console.Clear();<br>
+            while (true)<br>
+            {<br>
+                ListBooks();<br>
+                Console.WriteLine("Please enter the isbn of the book you would like to borrow");<br>
+                string ISBN1 = Console.ReadLine(); //new variable for the user's isbn<br>
+                Book bookToBorrow = null; //create a bookToBorrow for the book object<br>
+                for (int i = 0; i < Books.Count; i++) //for loop to cycle for matching isbn<br>
+                {<br>
+                    if (Books[i].ISBN == ISBN1)<br>
+                    {<br>
+                        bookToBorrow = Books[i]; ///links the book object with matching isbn to the new varible <br>
+                        bookToBorrow.isBorrowed = false; //changes bool value to true(borrowed:true)<br>
+                        if (bookToBorrow.isBorrowed == true)<br>
+                        {<br>
+                            Console.WriteLine("{0} is already checked out.", bookToBorrow.Title);<br>
+                            return;<br>
+                        }<br>
+                        if (bookToBorrow.isBorrowed == false)<br>
+                        {<br>
+                            bookToBorrow.isBorrowed = true;<br>
+                            Console.WriteLine("You just borrowed: " + bookToBorrow.Title);<br>
+                            return;<br>
+                        }<br>
+                        else<br>
+                        {<br>
+                            Console.WriteLine("Book with title {0} is not found in the library");<br>
+                        }<br>
+                    }<br>
+                }<br>
+<br>
+            }<br>
+<br>
+        }<br>
+        public void ReturnBookToLibrary()<br>
+        {<br>
+            Console.Clear();<br>
+            while (true)<br>
+            {<br>
+                ListBooks();<br>
+                Console.WriteLine("Please enter the ISBN of the book you would like to return:");<br>
+                string ISBN1 = Console.ReadLine();<br>
+                Book bookToReturn = null;<br>
+                for (int i = 0; i < Books.Count; i++)<br>
+                {<br>
+                    if (Books[i].ISBN == ISBN1 && Books[i].isBorrowed)<br>
+                    {<br>
+                        bookToReturn = Books[i];<br>
+                        bookToReturn.isBorrowed = false;<br>
+                        Console.WriteLine("You just returned: {0}. Would you like to return another book? Y/N", bookToReturn.Title);<br>
+                        string ReturnAgain = Console.ReadLine().ToUpper();<br>
+                        if (ReturnAgain == "Y")<br>
+                        {<br>
+                            continue;<br>
+                        }<br>
+                        else if (ReturnAgain == "N")<br>
+                        {<br>
+                            break;<br>
+                        }<br>
+                        else<br>
+                        {<br>
+                            Console.WriteLine("Wrong answer. Type Y or N");<br>
+                            continue;<br>
+                        }<br>
+                    }<br>
+                }<br>
+                if (bookToReturn == null)<br>
+                {<br>
+                    Console.WriteLine("Book with ISBN {0} is not found in the library or it was not borrowed.", ISBN1);<br>
+                }<br>
+                Console.WriteLine("Would you like to return another book? Y/N");<br>
+                string rewind = Console.ReadLine().ToUpper();<br>
+                if (rewind.ToUpper() == "Y")<br>
+                {<br>
+                    break;<br>
+                }<br>
+                if (rewind.ToUpper() == "N")<br>
+                {<br>
+                    Console.Clear();<br>
+                }<br>
+                else<br>
+                {<br>
+                    Console.Clear();<br>
+                }<br>
+            }<br>
+        }<br>
+        public void SaveToFile()<br>
+        {<br>
+            //Get path to the current working directory where the program is stored on the local PC (Current directory)<br>
+            string directory = Directory.GetCurrentDirectory();<br>
+<br>
+            //Sets filePath to the text file within the current directory<br>
+            string filePath = directory + @"\bookList.txt";<br>
+<br>
+            //If block checks if file exists at specified path and uses StreamWriter to create it if needed<br>
+            if (!(File.Exists(filePath)))<br>
+            {<br>
+                StreamWriter fileBuddy = new StreamWriter(filePath);<br>
+                fileBuddy.Close();<br>
+            }<br>
+<br>
+            //Create StreamWriter to write Books list into the file<br>
+            StreamWriter writer = new StreamWriter(filePath);<br>
+<br>
+            //Iterate through the Books list and add each item to the file<br>
+            foreach (Book Book in Books)<br>
+            {<br>
+                Console.WriteLine(Books);  //Output to console<br>
+                writer.WriteLine(Books);  //Save line to file<br>
+            }<br>
+            writer.Close();  //Terminate StringWriter to save changes<br>
+        }<br>
+    }<br>
+    public class Book<br>
+    {<br>
+        public string Title;<br>
+        public string Author;<br>
+        public string ISBN;<br>
+        public bool isBorrowed;<br>
+        public Book(string title, string author, string isbn, bool isBorrowed)<br>
+        {<br>
+            this.Title = title;<br>
+            this.Author = author;<br>
+            this.ISBN = isbn;<br>
+            this.isBorrowed = isBorrowed;<br>
+        }<br>
+    }<br>
+}<br>
     </p>
 </body>
 </html>

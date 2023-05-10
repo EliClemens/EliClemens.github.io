@@ -8,180 +8,180 @@
 </head>
 <body>
     <h1>
-        Pizza Ordering 
+        Pizza Ordering <br>
     </h1>
     <h2>
-        This program is for ordering pizza. First the user is asked a size. Then toppings are added and a choice between stuffed crust or not. After all the information is input, the data is displayed back to the user with a price depending on what was selected.
+        This program is for ordering pizza. First the user is asked a size. Then toppings are added and a choice between stuffed crust or not. After all the information is input, the data is displayed back to the user with a price depending on what was selected.<br>
     </h2>
     <p>
-        using System;
-using System.Collections.Generic;
-
-namespace pizza_project_finish
-{
-    public class pizza
-    {
-        private string size;
-        private List<string> toppings;
-        private bool stuffedCrust;
-        private int slices = 8;
-        private double price;
-
-        public pizza()
-        {
-            this.size = getSize();
-            this.toppings = getToppings();
-            this.stuffedCrust = getCrust();
-            getPrice();
-        }
-
-        public void eatPizza()
-        {
-            this.slices--;
-        }
-
-        public void getPrice()
-        {
-            double basePrice = 0;
-
-            if (this.size == "Small")
-            {
-                basePrice = 9.99;
-            }
-            else if (this.size == "Medium")
-            {
-                basePrice = 24.99;
-            }
-            else
-            {
-                basePrice = 50.00;
-            }
-            this.price = Math.Round(basePrice + Convert.ToDouble(this.toppings.Count - 1) * 2.99, 2);
-        }
-
-        public bool getCrust()
-        {
-            string userInput;
-            bool crust = false;
-
-            while (true)
-            {
-                Console.WriteLine("Would you like stuffed crust?\n1- Yes\n2- No");
-                userInput = Console.ReadLine();
-
-                if (userInput == "1")
-                {
-                    crust = true;
-                    break;
-                }
-                else if (userInput == "2")
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("{0} is not a valid option.", userInput);
-                }
-            }
-
-            return crust;
-        }
-
-        public List<string> getToppings()
-        {
-            List<string> toppings = new List<string>();
-            string userInput;
-
-            while (true)
-            {
-                Console.WriteLine("Enter a topping (or type 'done' to finish):");
-                userInput = Console.ReadLine();
-
-                if (userInput.ToLower() == "done")
-                {
-                    break;
-                }
-                else
-                {
-                    toppings.Add(userInput);
-                }
-            }
-
-            return toppings;
-        }
-
-        public string getSize()
-        {
-            string userInput;
-            string size;
-
-            while (true)
-            {
-                Console.WriteLine("What size would you like?\n1- Small\n2- Medium\n3- Large");
-                userInput = Console.ReadLine();
-
-                if (userInput == "1")
-                {
-                    size = "Small";
-                    break;
-                }
-                else if (userInput == "2")
-                {
-                    size = "Medium";
-                    break;
-                }
-                else if (userInput == "3")
-                {
-                    size = "Large";
-                    break;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("{0} is not a valid option.", userInput);
-                }
-            }
-
-            return size;
-        }
-
-        public void outputPizza()
-        {
-            Console.Clear();
-            Console.WriteLine("Here is your pizza information");
-            Console.WriteLine("Size: " + this.size);
-            Console.WriteLine("___________________________________");
-            Console.WriteLine("Toppings: ");
-            foreach (string topping in this.toppings)
-            {
-                Console.WriteLine(" -" + topping);
-            }
-            Console.WriteLine("");
-            Console.WriteLine("Slices: " + this.slices);
-            Console.WriteLine("");
-            if (this.stuffedCrust)
-            {
-                Console.WriteLine("Crust: Stuffed");
-
-            }
-            else
-            {
-                Console.WriteLine("Crust: Regular");
-            }
-            Console.WriteLine("");
-
-            Console.WriteLine("");
-            Console.WriteLine("Price: $" + this.price);
-
-        }
-        static void Main(string[] args)
-        {
-            pizza myPizza = new pizza();
-            myPizza.outputPizza();
-
-        }
-    }
+        using System;<br>
+using System.Collections.Generic;<br>
+<br>
+namespace pizza_project_finish<br>
+{<br>
+    public class pizza<br>
+    {<br>
+        private string size;<br>
+        private List<string> toppings;<br>
+        private bool stuffedCrust;<br>
+        private int slices = 8;<br>
+        private double price;<br>
+<br>
+        public pizza()<br>
+        {<br>
+            this.size = getSize();<br>
+            this.toppings = getToppings();<br>
+            this.stuffedCrust = getCrust();<br>
+            getPrice();<br>
+        }<br>
+<br>
+        public void eatPizza()<br>
+        {<br>
+            this.slices--;<br>
+        }<br>
+<br>
+        public void getPrice()<br>
+        {<br>
+            double basePrice = 0;<br>
+<br>
+            if (this.size == "Small")<br>
+            {<br>
+                basePrice = 9.99;<br>
+            }<br>
+            else if (this.size == "Medium")<br>
+            {<br>
+                basePrice = 24.99;<br>
+            }<br>
+            else<br>
+            {<br>
+                basePrice = 50.00;<br>
+            }<br>
+            this.price = Math.Round(basePrice + Convert.ToDouble(this.toppings.Count - 1) * 2.99, 2);<br>
+        }<br>
+<br>
+        public bool getCrust()<br>
+        {<br>
+            string userInput;<br>
+            bool crust = false;<br>
+<br>
+            while (true)<br>
+            {<br>
+                Console.WriteLine("Would you like stuffed crust?\n1- Yes\n2- No");<br>
+                userInput = Console.ReadLine();<br>
+<br>
+                if (userInput == "1")<br>
+                {<br>
+                    crust = true;<br>
+                    break;<br>
+                }<br>
+                else if (userInput == "2")<br>
+                {<br>
+                    break;<br>
+                }<br>
+                else<br>
+                {<br>
+                    Console.Clear();<br>
+                    Console.WriteLine("{0} is not a valid option.", userInput);<br>
+                }<br>
+            }<br>
+<br>
+            return crust;<br>
+        }<br>
+<br>
+        public List<string> getToppings()<br>
+        {<br>
+            List<string> toppings = new List<string>();<br>
+            string userInput;<br>
+<br>
+            while (true)<br>
+            {<br>
+                Console.WriteLine("Enter a topping (or type 'done' to finish):");<br>
+                userInput = Console.ReadLine();<br>
+<br>
+                if (userInput.ToLower() == "done")<br>
+                {<br>
+                    break;<br>
+                }<br>
+                else<br>
+                {<br>
+                    toppings.Add(userInput);<br>
+                }<br>
+            }<br>
+<br>
+            return toppings;<br>
+        }<br>
+<br>
+        public string getSize()<br>
+        {<br>
+            string userInput;<br>
+            string size;<br>
+<br>
+            while (true)<br>
+            {<br>
+                Console.WriteLine("What size would you like?\n1- Small\n2- Medium\n3- Large");<br>
+                userInput = Console.ReadLine();<br>
+<br>
+                if (userInput == "1")<br>
+                {<br>
+                    size = "Small";<br>
+                    break;<br>
+                }<br>
+                else if (userInput == "2")<br>
+                {<br>
+                    size = "Medium";<br>
+                    break;<br>
+                }<br>
+                else if (userInput == "3")<br>
+                {<br>
+                    size = "Large";<br>
+                    break;<br>
+                }<br>
+                else<br>
+                {<br>
+                    Console.Clear();<br>
+                    Console.WriteLine("{0} is not a valid option.", userInput);<br>
+                }<br>
+            }<br>
+<br>
+            return size;<br>
+        }<br>
+<br>
+        public void outputPizza()<br>
+        {<br>
+            Console.Clear();<br>
+            Console.WriteLine("Here is your pizza information");<br>
+            Console.WriteLine("Size: " + this.size);<br>
+            Console.WriteLine("___________________________________");<br>
+            Console.WriteLine("Toppings: ");<br>
+            foreach (string topping in this.toppings)<br>
+            {<br>
+                Console.WriteLine(" -" + topping);<br>
+            }<br>
+            Console.WriteLine("");<br>
+            Console.WriteLine("Slices: " + this.slices);<br>
+            Console.WriteLine("");<br>
+            if (this.stuffedCrust)<br>
+            {<br>
+                Console.WriteLine("Crust: Stuffed");<br>
+<br>
+            }<br>
+            else<br>
+            {<br>
+                Console.WriteLine("Crust: Regular");<br>
+            }<br>
+            Console.WriteLine("");<br>
+<br>
+            Console.WriteLine("");<br>
+            Console.WriteLine("Price: $" + this.price);<br>
+<br>
+        }<br>
+        static void Main(string[] args)<br>
+        {<br>
+            pizza myPizza = new pizza();<br>
+            myPizza.outputPizza();<br>
+<br>
+        }<br>
+    }<br>
     </p>
 </body>
 </html>
