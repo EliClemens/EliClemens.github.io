@@ -1,4 +1,5 @@
 /*Author: Eli Clemens */
+/*Filename:style.css*/
 body {
     background-color: rgb(242, 214, 177);
     text-align: center;
@@ -15,4 +16,8 @@ body {
     width:90%;
     margin: 10px;
     
+}
+video{
+    max-height:500px;
+    padding:10px;
 }
