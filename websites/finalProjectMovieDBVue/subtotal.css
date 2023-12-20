@@ -1,0 +1,13 @@
+.subtotal-container {
+    flex: 0 0 calc(30% - 10px);
+    margin-bottom: 10px;
+    max-width: 300px;
+    min-width: 300px;
+    margin-right: 50px;
+    margin-left: 100px;
+    border: 3px solid #00bcd4;
+    background-color: #e0f7fa9c;
+    padding: 10px;
+    color: #004d40; /* Dark green text color */
+  }
+  
